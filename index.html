@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Anisha Weds Kishan</title>
+  <style>
+    html,body{height:100%;margin:0;overflow:hidden;background:#000;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+    .bg{position:fixed;inset:0;z-index:0;}
+    .bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+    .overlay{position:fixed;inset:0;z-index:2;display:flex;align-items:flex-end;justify-content:center;padding:0 20px 12vh;}
+    .card{width:min(420px,92vw);background:rgba(255,250,236,0.92);backdrop-filter:blur(2px);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.35);padding:28px;}
+    h2{margin:0 0 6px;font-size:24px;font-weight:700;color:#111827;text-align:center;}
+    p{margin:0 0 18px;font-size:14px;color:#111827;text-align:center;}
+    label{display:block;font-size:14px;font-weight:500;color:#111827;margin:0 0 6px;}
+    input{width:100%;padding:10px 14px;border:1px solid #d1d5db;border-radius:8px;font-size:14px;}
+    input:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.12);}
+    .err{min-height:18px;margin:10px 0 0;color:#b91c1c;font-size:13px;}
+    button{width:100%;margin-top:14px;padding:12px;border:none;border-radius:8px;background:#b89752;color:#fff;font-size:16px;font-weight:600;cursor:pointer;}
+    button:disabled{opacity:.6;cursor:not-allowed;}
+    .transition{position:fixed;inset:0;z-index:10;display:none;background:#000;}
+    .transition video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+    @media (max-width:768px){ .overlay{padding-bottom:16vh;} .card{padding:22px;} }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <img src="media/gate/envelope-closed.png" alt="" />
+  </div>
+
+  <div class="overlay">
+    <div class="card">
+      <h2>Welcome</h2>
+      <p>Enter Password To Enter</p>
+      <form id="f" autocomplete="off">
+        <label for="pw">Password</label>
+        <input id="pw" type="password" placeholder="••••••••" required />
+        <div id="e" class="err" role="alert" aria-live="polite"></div>
+        <button id="b" type="submit">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="t" class="transition" aria-hidden="true">
+    <video id="v" muted playsinline preload="auto">
+      <source src="media/gate/envelope-opening.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <audio id="m" preload="auto">
+    <source src="media/audio/background-music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    (function(){
+      var PASSWORD="ak2026";
+      if (sessionStorage.getItem("ak_auth")==="1"){ location.replace("main.html"); return; }
+
+      var f=document.getElementById("f");
+      var pw=document.getElementById("pw");
+      var e=document.getElementById("e");
+      var b=document.getElementById("b");
+      var t=document.getElementById("t");
+      var v=document.getElementById("v");
+      var m=document.getElementById("m");
+
+      function startMusic(){
+        try { m.loop=true; m.volume=0.9; return m.play(); } catch(_) { return Promise.resolve(); }
+      }
+      function finish(){
+        sessionStorage.setItem("ak_auth","1");
+        location.replace("main.html");
+      }
+
+      f.addEventListener("submit", function(ev){
+        ev.preventDefault();
+        e.textContent="";
+        var val=(pw.value||"").trim();
+        if (val!==PASSWORD){ e.textContent="Incorrect password. Please try again."; pw.focus(); return; }
+        b.disabled=true;
+
+        startMusic().catch(function(){});
+
+        t.style.display="block";
+        v.currentTime=0;
+        var p=v.play();
+        if (p && p.catch) p.catch(function(){});
+        v.onended=finish;
+        setTimeout(finish, 8000);
+      });
+    })();
+  </script>
+</body>
+</html>
