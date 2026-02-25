@@ -120,3 +120,38 @@ html.gate-locked, body.gate-locked{
 @media (max-width:768px){
   .gate-ui{ bottom:16vh; padding:18px 18px 14px; }
 }
+/* --- Mobile overflow kill switch --- */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+/* Prevent text containers exceeding viewport */
+@media (max-width: 767px) {
+  .section-inner2,
+  .container,
+  .w-container,
+  .w-layout-blockcontainer {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+/* Make section-events images fit the mobile width */
+@media (max-width: 767px) {
+  #section-events img,
+  .section-events img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+  }
+}
+@media (max-width: 767px) {
+  #section-events img,
+  .section-events img {
+    object-fit: contain !important;
+  }
+}
