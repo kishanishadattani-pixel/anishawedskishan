@@ -155,3 +155,17 @@ html, body {
     object-fit: contain !important;
   }
 }
+@media (max-width: 767px) {
+  #section-haldi p, .section-haldi p,
+  #section-mehndi p, .section-mehndi p,
+  #section-santek p, .section-santek p,
+  #section-wedding p, .section-wedding p,
+  #section-civil p, .section-civil p,
+  #section-reception p, .section-reception p,
+  #section-travel .w-layout-grid p,
+  .section-travel .w-layout-grid p,
+  #section-travel .w-layout-grid li,
+  .section-travel .w-layout-grid li {
+    line-height: 1.55;
+  }
+}
