@@ -116,6 +116,13 @@ html.gate-locked, body.gate-locked{
   overflow:hidden !important;
   height:100%;
 }
+/* Fix section-events image 6 mobile width */
+@media (max-width: 767px) {
+  .section-events img {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
 
 @media (max-width:768px){
   .gate-ui{ bottom:16vh; padding:18px 18px 14px; }
