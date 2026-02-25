@@ -120,3 +120,12 @@ html.gate-locked, body.gate-locked{
 @media (max-width:768px){
   .gate-ui{ bottom:16vh; padding:18px 18px 14px; }
 }
+
+/* Fix overflow from Image 6 in section-events */
+@media (max-width: 767px) {
+  .section-events .section-inner2 img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
