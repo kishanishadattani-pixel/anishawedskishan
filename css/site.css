@@ -129,3 +129,7 @@ html.gate-locked, body.gate-locked{
     height: auto !important;
   }
 }
+/* Prevent horizontal scrolling globally */
+html, body {
+  overflow-x: hidden;
+}
