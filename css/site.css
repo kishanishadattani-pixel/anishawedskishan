@@ -184,3 +184,21 @@ html, body {
     line-height: 1.55 !important;
   }
 }
+/* Fix compressed line spacing on larger iPhones */
+@media (max-width: 767px) {
+
+  .section-haldi * ,
+  .section-mehndi * ,
+  .section-santek * ,
+  .section-wedding * ,
+  .section-civil * ,
+  .section-reception * {
+    line-height: 1.6 !important;
+  }
+
+  /* Only grid text in section-travel */
+  .section-travel .w-layout-grid * {
+    line-height: 1.6 !important;
+  }
+
+}
